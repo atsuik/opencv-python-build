@@ -1,0 +1,19 @@
+FROM ubuntu:22.04 AS base
+
+# 必要なパッケージをインストール
+RUN apt-get update && apt-get install -y \
+    git curl make build-essential libssl-dev zlib1g-dev \
+    libbz2-dev libreadline-dev libsqlite3-dev wget llvm \
+    libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
+    libffi-dev liblzma-dev python3-pip python3-setuptools \
+    libavcodec-dev libavformat-dev libswscale-dev \
+    libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev \
+    libgtk-3-dev libgtk2.0-dev libcanberra-gtk-module \
+    libpng-dev libjpeg-dev libopenexr-dev libtiff-dev libwebp-dev \
+    libopencv-dev ffmpeg libx264-dev ninja-build \
+    && rm -rf /var/lib/apt/lists/*
+
+# pyenvインストール
+ENV PYENV_ROOT="/root/.pyenv"
+ENV PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
+RUN git clone https://github.com/pyenv/pyenv.git $PYENV_ROOT

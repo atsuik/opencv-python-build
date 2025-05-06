@@ -1,5 +1,6 @@
 FROM ubuntu:22.04 AS base
 
+ENV DEBIAN_FRONTEND=noninteractive
 # 必要なパッケージをインストール
 RUN apt-get update && apt-get install -y \
     git curl make build-essential libssl-dev zlib1g-dev \
